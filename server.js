@@ -6,7 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 
 
-    article-one= {
+article-one= {
      title: 'Article one | Swamy',
      heading: 'Article one',
      date: 'Aug 5 2017',
@@ -27,7 +27,7 @@ app.use(morgan('combined'));
              Hi i am paragraph three Hi i am paragraph three
          </p>
     `
-    };
+};
     
 
 
