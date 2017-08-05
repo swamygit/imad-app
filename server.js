@@ -5,7 +5,8 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
+var articles = {
+ articleOne : {
      title: 'Article one | Swamy',
      heading: 'Article one',
      date: 'Aug 5 2017',
@@ -25,6 +26,51 @@ var articleOne = {
              Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three
              Hi i am paragraph three Hi i am paragraph three
          </p>`
+ },
+ 
+ articletwo : {
+     title: 'Article two | Swamy',
+     heading: 'Article two',
+     date: 'Aug 10 2017',
+     content: `
+         <p>
+             Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one
+             Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one
+             Hi i am paragraph one Hi i am paragraph one
+         </p>
+         <p>
+             Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two 
+             Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two
+             Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two
+         </p>
+         <p>
+             Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three 
+             Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three
+             Hi i am paragraph three Hi i am paragraph three
+         </p>`
+ },
+ articlethree : {
+     title: 'Article three | Swamy',
+     heading: 'Article three',
+     date: 'Aug 15 2017',
+     content: `
+         <p>
+             Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one
+             Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one Hi i am paragraph one
+             Hi i am paragraph one Hi i am paragraph one
+         </p>
+         <p>
+             Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two 
+             Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two
+             Hi i am paragraph two Hi i am paragraph two Hi i am paragraph two
+         </p>
+         <p>
+             Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three 
+             Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three Hi i am paragraph three
+             Hi i am paragraph three Hi i am paragraph three
+         </p>`
+ }
+        
 };
 
 
@@ -69,8 +115,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+    var articleName= req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-two', function (req, res) {
